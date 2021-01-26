@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService";
+
+service Product{
+	rpc GetProductInfo (ProductLookupModel) returns (ProductModel);
+	rpc CreateNewProduct (ProductModel) returns (ProductModel);
+	rpc DeleteProduct (ProductLookupModel) returns (ProductModel);
+	rpc ModifyProduct (ProductModel) returns (ProductModel);
+	rpc ChangeProductCategory (ProductLookupModel) returns (ProductModel);
+	rpc GetProductsByCategory (CategoryLookupModel) returns (ProductModel);
+
+
+	rpc CreateNewCategory (CategoryModel) returns (CategoryModel);
+	rpc GetCategoryInfo (CategoryLookupModel) returns (CategoryModel);
+	rpc DeleteCategory (CategoryLookupModel) returns (CategoryModel);
+	rpc ModifyCategory (CategoryModel) returns (CategoryModel);
+	
+}
+
+message ProductLookupModel{
+	int32 id = 1;
+}
+
+message ProductModel{
+	string name = 1;
+	int32 price = 2;
+	int32 categoryId = 3;
+	string description = 4;
+}
+
+
+message CategoryLookupModel{
+	int32 id = 1;
+}
+
+message CategoryModel{
+	string name = 1;
+}
